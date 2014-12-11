@@ -43,7 +43,8 @@
 I need to get 24000 samples of every musical note to can play it on the NIOS II processor on DE2 115 board.
 First at all I search for the frequencies in 4thoctave at this page: <a href="http://en.wikipedia.org/wiki/Piano_key_frequencies">http://en.wikipedia.org/wiki/Piano_key_frequencies</a>
 I wrote in an array of datatype double the frequences from C4 to B4, after that I learned some wave physics to obtain every sample from 0 to 23999, A<em>sin(2</em>PI<em>TIME</em>frequency) where frequency has the same value for every single note and TIME is the value is changing through the loop. Then I created a file and wrote the notes on it.</p>
-
+Once I did that, I saw I was spending too much memory, so I decided to store just the not repeated samples, I get 12000samples (more less) of every single note, it is still too much(using a set collection)... What can I do?
+I got it, why I don't store just a period of the musical wave and play it the times I need to get 1second or higher? That is what I did, when the sign of the sample changes 2times dont store any more sample, just stores the sin, period of the wave and play it the same period all I want and it works.
 <p>Main Program initialices the interruption from buttons and keys, reads a String from memory and writes it on the JTAG UART port, after that does nothing.</p>
 
 <p>HANDLEREXCEPTION:
