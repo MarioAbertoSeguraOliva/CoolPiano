@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Coolpiano : I created this project to learn how to use the different components NIOS II has. I used a DE2 115 board and this code can be improve for sure but I don&#39;t think I&#39;m going to spend more time with it, if you like assembly code have fun reading">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Coolpiano</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/MarioAbertoSeguraOliva/CoolPiano">View on GitHub</a>
+
+          <h1 id="project_title">Coolpiano</h1>
+          <h2 id="project_tagline">I created this project to learn how to use the different components NIOS II has. I used a DE2 115 board and this code can be improve for sure but I don&#39;t think I&#39;m going to spend more time with it, if you like assembly code have fun reading</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/MarioAbertoSeguraOliva/CoolPiano/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/MarioAbertoSeguraOliva/CoolPiano/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+
+<p>Thanks to GitHub Pages Generator I edited this page to show you reader how this code works.</p>
+
+<h3>
+<a id="explaining-the-code" class="anchor" href="#explaining-the-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Explaining the code</h3>
+
+<p>The Java File was created following these steps:
+I need to get 24000 samples of every musical note to can play it on the NIOS II processor on DE2 115 board.
+First at all I search for the frequencies in 4thoctave at this page: <a href="http://en.wikipedia.org/wiki/Piano_key_frequencies">http://en.wikipedia.org/wiki/Piano_key_frequencies</a>
+I wrote in an array of datatype double the frequences from C4 to B4, after that I learned some wave physics to obtain every sample from 0 to 23999, A<em>sin(2</em>PI<em>TIME</em>frequency) where frequency has the same value for every single note and TIME is the value is changing through the loop. Then I created a file and wrote the notes on it.</p>
+
+<p>Main Program initialices the interruption from buttons and keys, reads a String from memory and writes it on the JTAG UART port, after that does nothing.</p>
+
+<p>HANDLEREXCEPTION:
+Detects the begining of the interruption and fix it using one routine or the other one, if a button was pressed, plays a song showing in the displays Playing this song: "name of the song". The displays are 7segment displays and are located at 0x10000020 and 0x10000030. Audio Port is located at 0x10003040 and JTAG UART Port is located at 0x10001000.
+And that's all I think, remember to enable interruption and set to 0 the bit that represents an interruption was launched and if you have doubts about it, ask me.</p>
+
+<h3>
+<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>I have to say I wrote every single lane of code, but University prefer to give a same mark to everybody, I have no reason or motivation to study just for pass any subject, I am here learning to understand the world, "our world fill with 1's and 0's",
+around us. So I am Mario Alberto Segura Oliva, born in 1993 in Canary Islands(Spain). If you love practice sports, developing some code or just play or listen music nice to meet you ;D.</p>
+
+<h3>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>If you are interested in obtain more information about this project or other one, dont doubt and contact me at <a href="mailto:marioalbertoseguraoliva@gmail.com">marioalbertoseguraoliva@gmail.com</a> I swear to answer asap.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Coolpiano maintained by <a href="https://github.com/MarioAbertoSeguraOliva">MarioAbertoSeguraOliva</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
