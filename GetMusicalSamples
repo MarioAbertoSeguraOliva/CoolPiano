@@ -1,0 +1,79 @@
+package GetMusicalSamples;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
+
+public class GetMusicalSamples {
+
+    public static void main(String[] args) throws IOException {
+        
+        int A = 20000000;
+        String program="";
+        int[] frequencies = new int[]{262,278,292,310,328,348,370,392,416,440,466,494,831};
+        String[] NOTES= new String[]{"DO","DO_SOSTENIDO","RE","RE_SOSTENIDO",
+                                      "MI","FA","FA_SOSTENIDO","SOL","SOL_SOSTENIDO",
+                                       "LA", "LA_SOSTENIDO", "SI","SOL_SOSTENIDO_5"};
+        
+        int[] counter = new int[NOTES.length];
+        
+	for (int freq = 0; freq < NOTES.length; freq++) {
+            List<Integer> list = new ArrayList<>();
+            program += "\t.global "+NOTES[freq]+"\n"+NOTES[freq]+":\n\t.word ";
+            for (int i = 0; i < 23999; i++) {
+                int operation = (int)(A*Math.sin(2*Math.PI*i/48000*frequencies[freq]));
+                counter[freq] = signChanged(operation, counter[freq]);
+                if(counter[freq]!=2)
+                    list.add(operation); 
+                else
+                    break;
+            }
+            		
+            for (Integer note_sample : list) {
+                program+=note_sample+", ";
+            }
+            program+="\n\n";
+            System.out.println(NOTES[freq]+ "  " + list.toString());
+            System.out.println(list.size());
+        }
+		
+		
+        File file = new File("C:\\Users\\alumno\\Desktop\\DO.s");
+
+        program +="\n\t.end\n";
+        file.createNewFile();
+        Writer writer = null;
+
+        try {
+        writer = new BufferedWriter(new OutputStreamWriter(
+              new FileOutputStream("C:\\Users\\alumno\\Desktop\\DO.s"), "utf-8"));
+        writer.write(program);
+        } catch (IOException ex) {
+		
+        } finally {
+            try {
+				writer.close();
+			} catch (Exception ex) {
+			}
+        }
+		
+    }
+    
+    //This method is used to get 1period of the wave
+    private static int signChanged(int operation, int counter) {
+        if (operation<0 && counter==0){
+            counter++;
+        }else{
+            if(operation>0 && counter == 1){
+                counter++;
+            }
+        }
+        
+        return counter;
+    }   
+}
